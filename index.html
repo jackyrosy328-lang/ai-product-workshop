@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 产品合伙人工坊 — Anker Solix</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --bg2: #fffaf1;
+      --ink: #1f2933;
+      --muted: #64748b;
+      --rule: #ded3c2;
+      --accent: #1f6f78;
+      --accent2: #b66a2c;
+      --accent3: #d4a017;
+      --paper: #ffffff;
+      --soft: #f1e7d6;
+      --font: 'InstrumentSans', 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+      --font-mono: 'JetBrainsMono', 'SFMono-Regular', Menlo, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 15px; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    /* Header */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 3rem;
+    }
+    .brand .dot {
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 4rem;
+    }
+    .hero .tag {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      background: var(--soft);
+      color: var(--accent2);
+      font-size: 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      margin: 0 0 1rem;
+      font-size: 3.2rem;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 0 2rem;
+    }
+    .hero .meta {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+    .hero .meta strong {
+      color: var(--ink);
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    /* Concept */
+    .concept {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .concept h2 {
+      margin: 0 0 1.5rem;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+    .flow .step {
+      background: var(--bg2);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1rem 0.8rem;
+      text-align: center;
+      position: relative;
+    }
+    .flow .step .num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .flow .step .name {
+      font-weight: 700;
+      margin: 0.2rem 0;
+      font-size: 0.95rem;
+    }
+    .flow .step .desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .flow .step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -0.7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent2);
+      font-weight: 700;
+      z-index: 2;
+    }
+    .concept .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-top: 1rem;
+      border-top: 1px dashed var(--rule);
+    }
+
+    /* Entry Cards */
+    .entries {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(31, 41, 51, 0.08);
+    }
+    .card.primary {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #fff 0%, #f0f7f7 100%);
+    }
+    .card .badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+    .card.primary .badge { color: var(--accent); }
+    .card h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .card p {
+      color: var(--muted);
+      margin: 0 0 1.5rem;
+      flex: 1;
+      font-size: 0.95rem;
+    }
+    .card .features {
+      list-style: none;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      font-size: 0.85rem;
+    }
+    .card .features li {
+      padding: 0.3rem 0;
+      color: var(--muted);
+    }
+    .card .features li::before {
+      content: '·';
+      color: var(--accent);
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s ease;
+      align-self: flex-start;
+    }
+    .btn:hover { background: var(--accent); }
+    .btn .arrow { transition: transform 0.2s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .btn.secondary:hover {
+      background: var(--soft);
+      border-color: var(--accent2);
+    }
+
+    /* Sample note */
+    .sample-note {
+      background: var(--soft);
+      border-left: 3px solid var(--accent3);
+      padding: 1rem 1.2rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+    .sample-note strong { color: var(--ink); }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    @media (max-width: 800px) {
+      .hero h1 { font-size: 2.2rem; }
+      .flow { grid-template-columns: 1fr; }
+      .flow .step:not(:last-child)::after {
+        content: '↓';
+        right: 50%;
+        top: auto;
+        bottom: -1.1rem;
+        transform: translateX(50%);
+      }
+      .entries { grid-template-columns: 1fr; }
+      .hero .meta { flex-direction: column; gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>ANKER SOLIX × 飞书未来人才</span>
+    </div>
+
+    <section class="hero">
+      <div class="tag">AI PRODUCT WORKSHOP</div>
+      <h1>AI 产品<em>合伙人</em>工坊</h1>
+      <p class="lead">
+        一个可复用的多 Agent 产品定义工作流。输入任何硬件命题，五类 AI Agent 协作完成
+        市场洞察、用户假设、工程约束、商业评估、对抗评审，最终输出结构化的产品定义包。
+      </p>
+      <div class="meta">
+        <div><strong>5 类</strong>专业 Agent 协作</div>
+        <div><strong>3 个</strong>专家评审节点</div>
+        <div><strong>≥60%</strong>核心流程跨品类复用率</div>
+        <div><strong>&lt;30 分钟</strong>从命题到产品定义</div>
+      </div>
+    </section>
+
+    <section class="concept">
+      <h2>工作流程</h2>
+      <div class="flow">
+        <div class="step">
+          <div class="num">01</div>
+          <div class="name">机会发现</div>
+          <div class="desc">市场洞察 Agent 分析市场规模与竞品</div>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <div class="name">用户假设</div>
+          <div class="desc">用户假设 Agent 构建画像与痛点</div>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <div class="name">工程约束</div>
+          <div class="desc">工程约束 Agent 评估可行性边界</div>
+        </div>
+        <div class="step">
+          <div class="num">04</div>
+          <div class="name">商业评估</div>
+          <div class="desc">商业评估 Agent 测算定价与渠道</div>
+        </div>
+        <div class="step">
+          <div class="num">05</div>
+          <div class="name">对抗评审</div>
+          <div class="desc">评审裁判 Agent 识别冲突与风险</div>
+        </div>
+      </div>
+      <div class="note">
+        技术底座：飞书多维表格（结构化数据）+ 知识库 RAG（领域知识）+ aily 智能体（角色扮演）+ 飞书项目（流程编排）
+      </div>
+    </section>
+
+    <section class="entries">
+      <div class="card primary">
+        <div class="badge">STEP 01 — 起点</div>
+        <h3>进入工作坊</h3>
+        <p>输入你的硬件产品命题，看五类 AI Agent 如何协作产出完整的产品定义包。跑完流程后，可查看为当前命题产出的核心功能样品 demo。</p>
+        <ul class="features">
+          <li>市场 / 用户 / 工程 / 商业 / 评审 五视角并行</li>
+          <li>每个 Agent 输出附置信度证据链</li>
+          <li>支持自定义命题或选用预设命题</li>
+        </ul>
+        <a class="btn" href="/workshop">开始工作坊 <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="badge">STEP 02 — 样品</div>
+        <h3>用电沙盘</h3>
+        <p>这是工作坊跑"欧洲家庭露营户外电源"命题时，产出的产品定义包中一个核心功能的可视化样品——"会算电"的用电沙盘。</p>
+        <ul class="features">
+          <li>用电边界透明化，而非行为管控</li>
+          <li>基于真实物理参数的 72h 模拟</li>
+        </ul>
+        <a class="btn secondary" href="/sandbox">直接看样品 <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <div class="sample-note">
+      <strong>样品与工厂的关系：</strong>多 Agent 工作坊是"工厂"，用电沙盘是工厂跑当前命题产出的"样品"。
+      换命题（如阳台储能、智能音频），工厂会产出不同的产品定义包——核心流程复用率 ≥ 60%。
+    </div>
+
+    <footer class="footer">
+      <span>AI PRODUCT WORKSHOP v1.0</span>
+      <span>Feishu Future Talent · Anker Innovation Track</span>
+    </footer>
+  </div>
+</body>
+</html>

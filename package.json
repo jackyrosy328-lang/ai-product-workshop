@@ -1,0 +1,9 @@
+{
+  "name": "ai-product-workshop",
+  "version": "1.0.0",
+  "description": "AI 产品合伙人工坊 - Anker Solix 飞书未来人才项目",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  }
+}
