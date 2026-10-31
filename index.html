@@ -133,13 +133,21 @@
     }
     .flow .step .name {
       font-weight: 700;
-      margin: 0.2rem 0;
+      margin: 0.2rem 0 0.35rem;
       font-size: 0.95rem;
+    }
+    .flow .step .agent {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent2);
+      letter-spacing: 0.03em;
+      line-height: 1.35;
     }
     .flow .step .desc {
       font-size: 0.75rem;
       color: var(--muted);
-      line-height: 1.4;
+      line-height: 1.45;
+      margin-top: 0.15rem;
     }
     .flow .step:not(:last-child)::after {
       content: '→';
@@ -310,27 +318,32 @@
         <div class="step">
           <div class="num">01</div>
           <div class="name">机会发现</div>
-          <div class="desc">市场洞察 Agent 分析市场规模与竞品</div>
+          <div class="agent">市场洞察 Agent</div>
+          <div class="desc">分析市场规模与竞品</div>
         </div>
         <div class="step">
           <div class="num">02</div>
           <div class="name">用户假设</div>
-          <div class="desc">用户假设 Agent 构建画像与痛点</div>
+          <div class="agent">用户假设 Agent</div>
+          <div class="desc">构建画像与痛点</div>
         </div>
         <div class="step">
           <div class="num">03</div>
           <div class="name">工程约束</div>
-          <div class="desc">工程约束 Agent 评估可行性边界</div>
+          <div class="agent">工程约束 Agent</div>
+          <div class="desc">评估可行性边界</div>
         </div>
         <div class="step">
           <div class="num">04</div>
           <div class="name">商业评估</div>
-          <div class="desc">商业评估 Agent 测算定价与渠道</div>
+          <div class="agent">商业评估 Agent</div>
+          <div class="desc">测算定价与渠道</div>
         </div>
         <div class="step">
           <div class="num">05</div>
           <div class="name">对抗评审</div>
-          <div class="desc">评审裁判 Agent 识别冲突与风险</div>
+          <div class="agent">评审裁判 Agent</div>
+          <div class="desc">识别冲突与风险</div>
         </div>
       </div>
       <div class="note">
